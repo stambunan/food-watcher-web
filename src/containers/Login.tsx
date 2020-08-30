@@ -1,73 +1,73 @@
-import React, { Component, useState, ChangeEvent } from "react";
-import { Button, FormGroup, FormControl } from "react-bootstrap";
+import React, { Component, useState, FormEvent } from "react";
+import { Button, FormGroup, FormControl, Form } from "react-bootstrap";
 import "./Login.css";
-import { isCompositeComponent } from "react-dom/test-utils";
 
-interface ILogin {
-    email: string;
-    password: string;
+interface ILoginState {
+  email: string;
+  password: string;
 }
 
-class Login extends React.Component<{}, ILogin> {
+const Login: React.FC<{}> = (props) => {
+  const [login, setLogin] = useState<ILoginState>({
+    email: "",
+    password: "",
+  });
+  const [validated, setValidated] = useState(false);
 
+  const validateForm = () => {
+    if (login.email.length > 0 && login.password.length > 0) {
+      alert("success");
+    }
+  };
 
-    constructor() {
-        super({});
-
-        this.state = {
-            email: "",
-            password: ""
-        };
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
     }
 
-    setUser(login: ILogin) {
+    setValidated(true);
+  };
 
-    }
-
-    handlePasswordChange(evt: ChangeEvent<HTMLInputElement>) {
-        console.log('event is', evt);
-        alert(evt.target.value);
-    }
-
-    validateForm() {
-        return this.state.email.length > 0 && this.state.password.length > 0;
-    }
-
-    render() {
-        const [value, setValue] = useState<ILogin>({ email: "", password: "" });
-
-        return (
-            <div className="Login">
-                {value.email} - {value.password}
-                <form >
-                    <FormGroup controlId="email" >
-                        <label>Email</label>
-                        <FormControl
-                            autoFocus
-                            type="email"
-                            value={value.email}
-                            onChange={evt => setValue({
-                                ...value, 
-                                email: evt.target.value
-                            })}
-                        />
-                    </FormGroup>S
-                    <FormGroup controlId="password" >
-                        <label>Password</label>
-                        <FormControl
-                            value={value.password}
-                            type="password"
-                            onChange={evt => setValue({
-                                ...value,
-                                password: evt.target.value
-                            })}
-                        />
-                    </FormGroup>
-                    <Button block disabled type="submit">
-                        Login
+  return (
+    <div className="Login">
+      Stuff: {login.email} - {login.password}
+      <Form noValidate validated={validated} onSubmit={handleSubmit}>
+        <FormGroup controlId="email">
+          <Form.Label>Email</Form.Label>
+          <FormControl
+            autoFocus
+            required
+            type="email"
+            value={login.email}
+            onChange={(evt) => setLogin({ ...login, email: evt.target.value })}
+          />
+          <Form.Control.Feedback type="invalid">
+            Please enter a valid e-mail.
+          </Form.Control.Feedback>
+        </FormGroup>
+        S
+        <FormGroup controlId="password">
+          <Form.Label>Password</Form.Label>
+          <FormControl
+            value={login.password}
+            type="password"
+            required
+            onChange={(evt) =>
+              setLogin({ ...login, password: evt.target.value })
+            }
+          />
+          <Form.Control.Feedback type="invalid">
+            Please enter a password
+          </Form.Control.Feedback>
+        </FormGroup>
+        <Button block type="submit">
+          Login
         </Button>
-                </form>
-            </div>
-        );
-    }
-}
+      </Form>
+    </div>
+  );
+};
+
+export default Login;
