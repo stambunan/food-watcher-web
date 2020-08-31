@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar } from "react-bootstrap";
+import { Navbar, Nav } from "react-bootstrap";
 
 interface INavBarUser {
   Name: string;
@@ -14,7 +14,7 @@ const NavBar: React.FC<INavBarUser> = (props) => {
         {props.Name && props.Name.length > 0 ? (
           <Navbar.Text>Hello {props.Name}</Navbar.Text>
         ) : (
-          <Navbar.Text>Login</Navbar.Text>
+          <Nav.Link href="#link">Login</Nav.Link>
         )}
       </Navbar.Collapse>
     </Navbar>
