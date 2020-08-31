@@ -32,9 +32,8 @@ const Login: React.FC<{}> = (props) => {
 
   return (
     <div className="Login">
-      Stuff: {login.email} - {login.password}
       <Form noValidate validated={validated} onSubmit={handleSubmit}>
-        <FormGroup controlId="email">
+        <FormGroup controlId="email" style={{ width: "100%" }}>
           <Form.Label>Email</Form.Label>
           <FormControl
             autoFocus
@@ -44,10 +43,9 @@ const Login: React.FC<{}> = (props) => {
             onChange={(evt) => setLogin({ ...login, email: evt.target.value })}
           />
           <Form.Control.Feedback type="invalid">
-            Please enter a valid e-mail.
+            Please enter a valid e-mail
           </Form.Control.Feedback>
         </FormGroup>
-        S
         <FormGroup controlId="password">
           <Form.Label>Password</Form.Label>
           <FormControl
