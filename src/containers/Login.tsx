@@ -1,4 +1,4 @@
-import React, { Component, useState, FormEvent } from "react";
+import React, { useState, FormEvent } from "react";
 import { Button, FormGroup, FormControl, Form } from "react-bootstrap";
 import "./Login.css";
 
@@ -32,6 +32,7 @@ const Login: React.FC<{}> = (props) => {
 
   return (
     <div className="Login">
+      <h1 className="Title">Login</h1>
       <Form noValidate validated={validated} onSubmit={handleSubmit}>
         <FormGroup controlId="email" style={{ width: "100%" }}>
           <Form.Label>Email</Form.Label>
