@@ -1,6 +1,6 @@
 ## Introduction
 
-This project will assist users in watching what they eat. Test with Github integration
+This project will assist users in watching what they eat. Test with Github integration. Add more stuff
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
