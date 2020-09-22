@@ -1,3 +1,7 @@
+## Introduction
+
+This project will assist users in watching what they eat.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
